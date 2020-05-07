@@ -9,6 +9,7 @@ class Matrix{
 
 public:
     Matrix(int nRows, int nCols);
+    Matrix(const Matrix &Copy);
 
     Matrix *transpose();
 
@@ -18,8 +19,10 @@ public:
 
     void PrintMatrix();
 
-    int getnRows(){return this -> nRows;}
-    int getnCols(){return this -> nCols;}
+    int getnRows() const {return this -> nRows;}
+    int getnCols() const {return this -> nCols;}
+
+    Matrix operator*(const Matrix &Right);
 
 private:
     int nRows;

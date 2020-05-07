@@ -3,9 +3,10 @@
 #include <random>
 #include <chrono>
 #include <cstdlib>
+#include <assert.h>
 using namespace std;
 
-
+//Constructor
 Matrix::Matrix(int nRows, int nCols){
     this -> nRows = nRows;
     this -> nCols = nCols;
@@ -23,6 +24,13 @@ Matrix::Matrix(int nRows, int nCols){
         this -> values.push_back(ColValues);
     }
 
+}
+
+//Copy constructor
+Matrix::Matrix(const Matrix &Copy){
+    values = Copy.values;
+    nRows = Copy.getnRows();
+    nCols = Copy.getnCols();
 }
 
 void Matrix::SetVal(int r, int c, double v){
@@ -54,4 +62,24 @@ void Matrix::PrintMatrix(){
         cout << endl;
     }
 
+}
+
+Matrix Matrix::operator*(const Matrix &Right){
+    if(nCols != Right.getnRows()){
+        cerr << "Number of columns of the left matrix must be equal to the number of rows of the right matrix" << endl;
+        assert(false);
+    }
+
+    Matrix temp(nRows, Right.getnCols());
+
+    for(int i = 0; i < nRows; i++){
+        for(int j = 0; j < Right.getnCols(); j++){
+            double v = 0;
+            for(int k = 0; k < Right.getnRows(); k++){
+                v += (values.at(i).at(k) * Right.values.at(k).at(j));
+            }
+            temp.values.at(i).at(j) = v;
+        }
+    }
+    return temp;
 }
