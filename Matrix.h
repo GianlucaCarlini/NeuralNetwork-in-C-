@@ -11,7 +11,7 @@ public:
     Matrix(int nRows, int nCols);
     Matrix(const Matrix &Copy);
 
-    Matrix *transpose();
+    Matrix transpose();
 
     double makeRandomNumber();
     void SetVal(int r, int c, double v);

@@ -14,13 +14,13 @@ public:
     void setVal(int index, double val);
 
     // We need some functions that can turn the actual neuron layer into an 1xn matrix, where n is the number of neurons
-    Matrix *toMatrixVals();
-    Matrix *toMatrixActivated();
-    Matrix *toMatrixDerived();
+    Matrix toMatrixVals();
+    Matrix toMatrixActivated();
+    Matrix toMatrixDerived();
 private:
     int number;
 
-    vector<Neuron *> neurons;
+    vector<Neuron > neurons;
 
 
 };

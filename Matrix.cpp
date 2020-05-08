@@ -41,11 +41,11 @@ double Matrix::GetVal(int r, int c){
     return this -> values.at(r).at(c);
 }
 
-Matrix *Matrix::transpose(){
-    Matrix *m = new Matrix(this -> nCols, this -> nRows); //The number of rows is now the number of columns and vice-versa
+Matrix Matrix::transpose(){
+    Matrix m(this -> nCols, this -> nRows); //The number of rows is now the number of columns and vice-versa
     for(int i = 0; i < nRows; i++){
         for(int j = 0; j < nCols; j++){
-            m -> SetVal(j, i, this -> GetVal(i, j));
+            m.SetVal(j, i, this -> GetVal(i, j));
         }
     }
 

@@ -16,8 +16,8 @@ private:
 
     vector<int> structure;
     int structureSize;
-    vector<Layer *> layers;
-    vector<Matrix *> weights;
+    vector<Layer > layers;
+    vector<Matrix > weights;
     vector<double> input;
 };
 
