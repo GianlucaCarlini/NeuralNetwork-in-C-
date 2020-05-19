@@ -4,62 +4,93 @@
 #include "Layer.cpp"
 #include "Network.cpp"
 #include <vector>
+#include <time.h>
+#include <stdlib.h>
+#include <math.h>
 using namespace std;
 
-double function(vector<double>input){
-    double x = 0;
-    x += input.at(0);
-    x *= input.at(1);
-    x /= input.at(2);
-    return x;
-}
 
 int main(){
 
-    vector<int> structure;
-    structure.push_back(3);
-    structure.push_back(5);
-    structure.push_back(7);
-    structure.push_back(1);
+    srand((unsigned) time(NULL));
 
-    vector<double> input;
-    input.push_back(2.0);
-    input.push_back(4.0);
-    input.push_back(3.0);
+    vector<vector<double>> DataSet;
+    vector<vector<double>> Targets;
 
-
-    vector<double> target;
-    target.push_back(function(input));
-
-    Network n(structure);
-
-    n.setInputs(input);
-
-    n.setTarget(target);
-
-    n.Summary();
-
-
-
-    Matrix m = n.GetOutput();
-
-
-    for(int i = 0; i < 20; i++){
-
-    n.FeedForward();
-
-    n.SetError();
-
-    m = n.GetOutput();
-
-    double error = n.getLoss();
-    cout << "OUTPUT\t";
-    m.PrintMatrix();
-    cout << endl;
-    cout << "ERROR\t" << error << endl;
-    cout << "-------------" << endl;
-
-    n.BackPropagation(0.01);
+    for(int i = 0; i < 50; i++){
+        vector<double> instance;
+        for(int j = 0; j < 3; j++){
+            instance.push_back((double)rand()/RAND_MAX);
+        }
+        DataSet.push_back(instance);
     }
+
+    for(int i = 0; i < 50; i++){
+        vector<double> instance;
+        instance.push_back((DataSet.at(i).at(0) - DataSet.at(i).at(1))/(pow(3.14, DataSet.at(i).at(2))));
+        Targets.push_back(instance);
+    }
+
+    for(int i = 0; i < 50; i++){
+        cout << DataSet.at(i).at(0) << "\t" << DataSet.at(i).at(1) << "\t" << DataSet.at(i).at(2) << "\t";
+        cout << Targets.at(i).at(0) << endl;
+    }
+//
+//    vector<int> structure;
+//    structure.push_back(3);
+//    structure.push_back(10);
+//    structure.push_back(1);
+//
+//    ///TRAINING
+//
+//    Network n(structure);
+//    double error = 0;
+//    Matrix m = n.GetOutput();
+//    for(int i = 0; i < 200; i++){
+//        double meanError = 0;
+//        cout << "EPOCH" << i << "\t" ;
+//        for(int j = 0; j < DataSet.size(); j ++){
+//            n.setInputs(DataSet.at(j));
+//            n.setTarget(Targets.at(j));
+//            n.FeedForward();
+//            n.SetError();
+////            m = n.GetOutput();
+//
+//            error = n.getLoss();
+////            cout << "OUTPUT\t";
+////            m.PrintMatrix();
+////            cout << endl;
+////            cout << "ERROR\t" << error << endl;
+////            cout << "----------------" << endl;
+//            meanError +=error;
+//            n.BackPropagation(0.1/(1 + (0.02*i)));
+//        }
+//        meanError /= DataSet.size();
+//        cout << "MEAN ERROR \t" << meanError  << endl << "----------------" << endl;
+//    }
+
+//
+//    n.setInputs(input);
+//
+//    n.setTarget(target);
+//
+//
+//    for(int i = 0; i < 10; i++){
+//
+//    n.FeedForward();
+//
+//    n.SetError();
+//
+//    m = n.GetOutput();
+//
+//    double error = n.getLoss();
+//    cout << "OUTPUT\t";
+//    m.PrintMatrix();
+//    cout << endl;
+//    cout << "ERROR\t" << error << endl;
+//    cout << "-------------" << endl;
+//
+//    n.BackPropagation(0.01);
+//    }
 
 }
