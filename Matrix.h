@@ -23,6 +23,8 @@ public:
     int getnCols() const {return this -> nCols;}
 
     Matrix operator*(const Matrix &Right);
+    Matrix operator-(const Matrix &Right);
+    Matrix operator*(const double &Right);
 
 private:
     int nRows;

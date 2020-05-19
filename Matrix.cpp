@@ -14,7 +14,7 @@ Matrix::Matrix(int nRows, int nCols){
     int r = rand();
     int seed = chrono::system_clock::now().time_since_epoch().count();
     mt19937 gen(r + seed);
-    uniform_real_distribution<> dis(0, 1);
+    uniform_real_distribution<> dis(-1, 1);
 
     for(int i = 0; i < nRows; i++){
         vector<double> ColValues;
@@ -79,6 +79,36 @@ Matrix Matrix::operator*(const Matrix &Right){
                 v += (values.at(i).at(k) * Right.values.at(k).at(j));
             }
             temp.values.at(i).at(j) = v;
+        }
+    }
+    return temp;
+}
+
+Matrix Matrix::operator-(const Matrix &Right){
+   if(nCols != Right.getnCols()){
+        cerr << "Number of columns of the left matrix must be equal to the number of columns of the right matrix" << endl;
+        assert(false);
+    }
+    if(nRows != Right.getnRows()){
+        cerr << "Number of rows of the left matrix must be equal to the number of rows of the right matrix" << endl;
+        assert(false);
+    }
+    Matrix temp(nRows, nCols);
+
+    for(int i = 0; i < nRows; i++){
+        for(int j = 0; j < nCols; j++){
+            temp.SetVal(i, j, values.at(i).at(j) - Right.values.at(i).at(j));
+        }
+    }
+    return temp;
+
+}
+
+Matrix Matrix::operator*(const double &Right){
+    Matrix temp(nRows, nCols);
+    for(int i = 0; i < nRows; i++){
+        for(int j = 0; j < nCols; j++){
+            temp.SetVal(i, j, (values.at(i).at(j) * Right));
         }
     }
     return temp;

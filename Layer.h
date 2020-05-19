@@ -13,6 +13,8 @@ public:
 
     void setVal(int index, double val);
 
+    vector<Neuron> getNeurons(){return this -> neurons;}
+
     // We need some functions that can turn the actual neuron layer into an 1xn matrix, where n is the number of neurons
     Matrix toMatrixVals();
     Matrix toMatrixActivated();
