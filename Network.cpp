@@ -108,13 +108,23 @@ void Network::BackPropagation(double LearningRate){
         errorMatrix.SetVal(0, i, outputErrors.at(i));
     }
     Matrix prevact = layers.at(outputLayerIndex -1).toMatrixActivated().transpose();
-    Matrix GradientsYtoZ = prevact * errorMatrix;
+    Matrix Gradients = prevact * errorMatrix;
 
-    Matrix adjustedWeights = weights.at(outputLayerIndex - 1) - (GradientsYtoZ * LearningRate);
+    Matrix adjustedWeights = weights.at(outputLayerIndex - 1) - (Gradients * LearningRate);
     newWeights.push_back(adjustedWeights);
+
     ///BACKPROP
     for(int i = outputLayerIndex -2; i >= 0; i--){
-        Matrix temp = (weights.at(i + 1) * errorMatrix.transpose();
+        Matrix temp = (weights.at(i + 1) * errorMatrix.transpose()).transpose() * layers.at(i).toMatrixDerived();
+        errorMatrix = temp;
+        Gradients = layers.at(i).toMatrixActivated().transpose() * errorMatrix;
+        adjustedWeights = weights.at(i) - (Gradients * LearningRate);
+        newWeights.push_back(adjustedWeights);
+    }
+
+    ///SGD
+    for(int i = 0; i <= outputLayerIndex - 1; i++){
+        weights.at(outputLayerIndex - 1 - i) = newWeights.at(i);
     }
 
 }

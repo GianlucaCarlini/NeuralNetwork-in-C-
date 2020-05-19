@@ -65,9 +65,19 @@ void Matrix::PrintMatrix(){
 }
 
 Matrix Matrix::operator*(const Matrix &Right){
+
+    if(nRows == 1 && Right.nRows == 1){
+        Matrix temp(1, nCols);
+        for(int i = 0; i < nCols; i++){
+            temp.SetVal(0, i, (values.at(0).at(i) * Right.values.at(0).at(i)));
+        }
+        return temp;
+    }
+
+    else{
     if(nCols != Right.getnRows()){
-        cerr << "Number of columns of the left matrix must be equal to the number of rows of the right matrix" << endl;
-        assert(false);
+    cerr << "Number of columns of the left matrix must be equal to the number of rows of the right matrix" << endl;
+    assert(false);
     }
 
     Matrix temp(nRows, Right.getnCols());
@@ -82,6 +92,7 @@ Matrix Matrix::operator*(const Matrix &Right){
         }
     }
     return temp;
+    }
 }
 
 Matrix Matrix::operator-(const Matrix &Right){

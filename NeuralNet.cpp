@@ -39,7 +39,8 @@ int main(){
 
     Matrix m = n.GetOutput();
 
-    for(int i = 0; i < 50; i++){
+
+    for(int i = 0; i < 20; i++){
 
     n.FeedForward();
 
@@ -56,48 +57,5 @@ int main(){
 
     n.BackPropagation(0.01);
     }
-//    n.Summary();
-//
-//    n.FeedForward();
-//
-//    n.SetError();
-//
-//    Matrix m = n.GetOutput();
-//
-//    m.PrintMatrix();
-//
-//    double error = n.getLoss();
-//
-//    cout << error << endl;
-//
-//    n.BackPropagation();
-//
-//    n.Summary();
-//    n.FeedForward();
-//
-//    n.SetError();
-//
-//    m = n.GetOutput();
-//
-//    m.PrintMatrix();
-//    error = n.getLoss();
-//
-//    cout << error << endl;
-
-//    for(int i = 0; i < output.size(); ++i){
-//        cout << output.at(i) << endl;
-//    }
-
-//    Matrix a(2, 3);
-//    Matrix b(3, 3);
-//    Matrix c = a * b;
-//
-//    a.PrintMatrix();
-//    cout << endl;
-//    b.PrintMatrix();
-//    cout << endl;
-//    c.PrintMatrix();
-//
 
 }
-
