@@ -114,11 +114,11 @@ void Network::BackPropagation(double LearningRate){
     newWeights.push_back(adjustedWeights);
 
     ///BACKPROP
-    for(int i = outputLayerIndex -2; i >= 0; i--){
-        Matrix temp = (weights.at(i + 1) * errorMatrix.transpose()).transpose() * layers.at(i).toMatrixDerived();
+    for(int i = outputLayerIndex -1; i > 0; i--){
+        Matrix temp = (weights.at(i) * errorMatrix.transpose()).transpose() * layers.at(i).toMatrixDerived();
         errorMatrix = temp;
-        Gradients = layers.at(i).toMatrixActivated().transpose() * errorMatrix;
-        adjustedWeights = weights.at(i) - (Gradients * LearningRate);
+        Gradients = layers.at(i - 1).toMatrixActivated().transpose() * errorMatrix;
+        adjustedWeights = weights.at(i - 1) - (Gradients * LearningRate);
         newWeights.push_back(adjustedWeights);
     }
 

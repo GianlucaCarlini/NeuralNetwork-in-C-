@@ -15,9 +15,11 @@ double function(vector<double>input){
 }
 
 int main(){
+
     vector<int> structure;
     structure.push_back(3);
-    structure.push_back(3);
+    structure.push_back(5);
+    structure.push_back(7);
     structure.push_back(1);
 
     vector<double> input;
@@ -36,6 +38,8 @@ int main(){
     n.setTarget(target);
 
     n.Summary();
+
+
 
     Matrix m = n.GetOutput();
 
