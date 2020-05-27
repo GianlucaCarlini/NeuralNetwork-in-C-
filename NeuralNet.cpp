@@ -64,28 +64,5 @@ int main(){
         cout << "MEAN ERROR \t" << meanError << endl << "-------------" << endl;
     }
 
-//
-//    n.setInputs(input);
-//
-//    n.setTarget(target);
-//
-//
-//    for(int i = 0; i < 10; i++){
-//
-//    n.FeedForward();
-//
-//    n.SetError();
-//
-//    m = n.GetOutput();
-//
-//    double error = n.getLoss();
-//    cout << "OUTPUT\t";
-//    m.PrintMatrix();
-//    cout << endl;
-//    cout << "ERROR\t" << error << endl;
-//    cout << "-------------" << endl;
-//
-//    n.BackPropagation(0.01);
-//    }
 
 }
