@@ -31,7 +31,6 @@ private:
     int structureSize;
     vector<Layer > layers;
     vector<Matrix> weights;
-    vector<Matrix> gradients;
     vector<double> input;
     vector<double> target;
     vector<double> historicalErrors;
